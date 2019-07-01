@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" type="text/css" href="css/header.css"/>
+	<link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
+   	 <script type="text/javascript" charset="utf-8">
+     	mui.init();
+   	mui.plusReady(function(){
+   		plus.navigator.setStatusBarStyle("light");
+   		plus.navigator.setStatusBarBackground("#007AFF")
+   	});
+   </script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav title">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title title-color" >千绪</h1>
+	</header>
+	<nav class="mui-bar mui-bar-tab">
+		<a class="mui-tab-item mui-active" tabindex="0">
+			<span class="mui-icon iconfont icon-langman"></span>
+			<span class="mui-tab-label">风信</span>
+		</a>
+		<a class="mui-tab-item" tabindex="1">
+			<span class="mui-icon iconfont icon-tongxunlu"></span>
+			<span class="mui-tab-label">通讯录</span>
+		</a>
+		<a class="mui-tab-item" tabindex="2">
+			<span class="mui-icon iconfont icon-pengyouquan"></span>
+			<span class="mui-tab-label">朋友圈</span>
+		</a>
+		<a class="mui-tab-item" tabindex="3">
+			<span class="mui-icon  iconfont icon-wode"></span>
+			<span class="mui-tab-label">我的</span>
+		</a>
+	</nav>
+     <script type="text/javascript">
+     	var fengxinArray=[
+			{
+			 pageId:"hcf-chat.html",
+			 pageUrl:"hcf-chat.html",
+			},
+			{
+			 pageId:"hcf-tongxunlu.html",
+			 pageUrl:"hcf-tongxunlu.html",
+			},
+			{
+			 pageId:"hcf-friendquan.html",
+			 pageUrl:"hcf-friendquan.html",
+			 }, 	{
+			 pageId:"hcf-my.html",
+			 pageUrl:"hcf-my.html",
+			}
+			
+		]
+		var muxinStyle={
+			top:"44px",
+			bottom:"50px"
+		}
+		mui.plusReady(function(){
+			var indexWebview  = plus.webview.currentWebview();
+		    for (var i=0;i<fengxinArray.length;i++){
+				var muxinPage=plus.webview.create(fengxinArray[i].pageId 
+				, fengxinArray[i].pageId,muxinStyle);
+			    muxinPage.hide();
+				indexWebview.append(muxinPage)
+			} 
+			plus.webview.show(fengxinArray[0].pageId)
+			
+			 mui(".mui-bar-tab").on('tap','.mui-tab-item',function(){
+			  //获取id
+			  var tabindex = this.getAttribute("tabindex");
+			  //传值给详情页面，通知加载新数据
+			  plus.webview.show(fengxinArray[tabindex].pageId,"fade-in",200)
+			  for (var i = 0; i < fengxinArray.length; i++) {
+			  	if (i!=tabindex){
+					plus.webview.hide(fengxinArray[i].pageId,"fade-out",200);
+				}
+			  }
+			}) 
+		});
+		
+		
+     </script>
+	 
+</body>
+</html>
