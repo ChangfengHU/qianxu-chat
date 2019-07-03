@@ -19,7 +19,7 @@
 <body>
 	<header class="mui-bar mui-bar-nav title">
 		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-		<h1 class="mui-title title-color" >千绪</h1>
+		<h1 class="mui-title title-color" id="mui-title" >千绪</h1>
 	</header>
 	<nav class="mui-bar mui-bar-tab">
 		<a class="mui-tab-item mui-active" tabindex="0">
@@ -39,6 +39,7 @@
 			<span class="mui-tab-label">我的</span>
 		</a>
 	</nav>
+			<script type="text/javascript" src="js/app.js" ></script>
      <script type="text/javascript">
      	var fengxinArray=[
 			{
@@ -62,7 +63,12 @@
 			top:"44px",
 			bottom:"50px"
 		}
+		
+		
+		
 		mui.plusReady(function(){
+			var userform = document.getElementById("mui-title");
+			userform.innerHTML=app.getUserGlobalInfo()["username"]
 			var indexWebview  = plus.webview.currentWebview();
 		    for (var i=0;i<fengxinArray.length;i++){
 				var muxinPage=plus.webview.create(fengxinArray[i].pageId 
